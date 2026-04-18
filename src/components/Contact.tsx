@@ -1,7 +1,7 @@
 "use client";
 
 import SectionWrapper from "./SectionWrapper";
-import { FiMail, FiPhone, FiLinkedin, FiGithub } from "react-icons/fi";
+import { FiMail, FiPhone, FiLinkedin, FiGithub, FiAward } from "react-icons/fi";
 import type { IconType } from "react-icons";
 import { usePortfolio } from "@/lib/LanguageContext";
 
@@ -59,6 +59,32 @@ export default function Contact() {
             </a>
           );
         })}
+
+        <a
+          href="https://www.linkedin.com/in/farasataliaziz/details/certifications/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-4 bg-surface border border-surface-border rounded-lg p-5 hover:border-accent/50 transition-colors duration-200 group"
+        >
+          <FiAward className="text-accent text-xl shrink-0 group-hover:scale-110 transition-transform" />
+          <div>
+            <p className="text-xs text-gray-500 mb-0.5">Certifications</p>
+            <p className="text-sm text-gray-300">LinkedIn Certifications</p>
+          </div>
+        </a>
+
+        <a
+          href="https://www.linkedin.com/in/farasataliaziz/details/featured/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-4 bg-surface border border-surface-border rounded-lg p-5 hover:border-accent/50 transition-colors duration-200 group"
+        >
+          <FiAward className="text-accent text-xl shrink-0 group-hover:scale-110 transition-transform" />
+          <div>
+            <p className="text-xs text-gray-500 mb-0.5">Certifications</p>
+            <p className="text-sm text-gray-300">LinkedIn Featured Posts</p>
+          </div>
+        </a>
       </div>
 
     </SectionWrapper>
