@@ -31,23 +31,13 @@ export default function Contact() {
     });
 
     try {
-      const endpoints = ["/forms.html", "/__forms.html", "/__forms"];
-      let delivered = false;
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: body.toString(),
+      });
 
-      for (const endpoint of endpoints) {
-        const res = await fetch(endpoint, {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: body.toString(),
-        });
-
-        if (res.status < 400) {
-          delivered = true;
-          break;
-        }
-      }
-
-      if (!delivered) throw new Error("Form submission failed");
+      if (res.status >= 400) throw new Error("Form submission failed");
 
       setStatus("success");
       setSubmitted(true);
@@ -118,7 +108,7 @@ export default function Contact() {
       <form
         name="contact"
         method="POST"
-        action="/forms.html"
+        action="/"
         data-netlify="true"
         onSubmit={handleSubmit}
         className="bg-surface border border-surface-border rounded-xl p-6 md:p-8"
