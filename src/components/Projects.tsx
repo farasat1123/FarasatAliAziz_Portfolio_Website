@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { projects } from "@/data/portfolio";
+import { usePortfolio } from "@/lib/LanguageContext";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -14,6 +14,8 @@ const cardVariants = {
 };
 
 export default function Projects() {
+  const { t } = usePortfolio();
+  const projects = t.projects;
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 

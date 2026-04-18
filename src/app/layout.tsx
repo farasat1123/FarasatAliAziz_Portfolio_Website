@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "@/lib/LanguageContext";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -8,9 +9,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Fahad Tariq Aziz | Software Engineer",
+  title: "Farasat Ali Aziz | Senior QA Specialist",
   description:
-    "Portfolio of Fahad Tariq Aziz — Software Engineer specializing in React.js, Next.js, React Native, Node.js, and AWS.",
+    "Portfolio of Farasat Ali Aziz — Senior QA Specialist with 6+ years of experience in manual and automated testing across Agile environments.",
 };
 
 export default function RootLayout({
@@ -20,7 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} antialiased`}>{children}</body>
+      <body className={`${inter.variable} antialiased`}>
+        <LanguageProvider>{children}</LanguageProvider>
+      </body>
     </html>
   );
 }

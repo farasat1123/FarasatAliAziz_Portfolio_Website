@@ -3,10 +3,12 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX, FiDownload } from "react-icons/fi";
-import { navLinks } from "@/data/portfolio";
+import { usePortfolio } from "@/lib/LanguageContext";
+import type { Lang } from "@/lib/LanguageContext";
 import Logo from "./Logo";
 
 export default function Navbar() {
+  const { lang, setLang, t } = usePortfolio();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -27,6 +29,24 @@ export default function Navbar() {
     };
   }, [isMobileMenuOpen]);
 
+  const LangToggle = ({ className }: { className?: string }) => (
+    <div className={`flex items-center border border-surface-border rounded-lg overflow-hidden ${className}`}>
+      {([["en", "English"], ["de", "Deutsch"]] as [Lang, string][]).map(([l, label]) => (
+        <button
+          key={l}
+          onClick={() => setLang(l)}
+          className={`px-3 py-1.5 text-xs font-semibold transition-colors duration-200 ${
+            lang === l
+              ? "bg-accent text-white"
+              : "text-gray-400 hover:text-white"
+          }`}
+        >
+          {label}
+        </button>
+      ))}
+    </div>
+  );
+
   return (
     <>
       <nav
@@ -40,13 +60,13 @@ export default function Navbar() {
           <a href="#" className="flex items-center gap-2 group">
             <Logo size={34} />
             <span className="text-lg font-bold text-white group-hover:text-accent transition-colors duration-200">
-              Fahad
+              Farasat
             </span>
           </a>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
+          <div className="hidden md:flex items-center gap-6">
+            {t.navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
@@ -55,13 +75,14 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
+            <LangToggle />
             <a
-              href="/Fahad-Tariq-Aziz.pdf"
+              href="/Farasat-Ali-Aziz.pdf"
               download
               className="flex items-center gap-2 bg-accent hover:bg-accent-dark text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors duration-200"
             >
               <FiDownload size={14} />
-              Resume
+              {t.ui.resume}
             </a>
           </div>
 
@@ -76,7 +97,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile overlay - outside nav for proper stacking */}
+      {/* Mobile overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -87,7 +108,7 @@ export default function Navbar() {
             className="fixed inset-0 z-40 bg-background md:hidden"
           >
             <div className="flex flex-col items-center justify-center gap-8 h-full">
-              {navLinks.map((link) => (
+              {t.navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
@@ -97,13 +118,14 @@ export default function Navbar() {
                   {link.label}
                 </a>
               ))}
+              <LangToggle />
               <a
-                href="/Fahad-Tariq-Aziz.pdf"
+                href="/Farasat-Ali-Aziz.pdf"
                 download
                 className="flex items-center gap-2 bg-accent hover:bg-accent-dark text-white font-medium px-6 py-3 rounded-lg transition-colors duration-200"
               >
                 <FiDownload size={16} />
-                Download Resume
+                {t.ui.downloadCV}
               </a>
             </div>
           </motion.div>

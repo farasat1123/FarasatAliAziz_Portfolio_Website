@@ -3,67 +3,47 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import {
-  SiReact,
-  SiNextdotjs,
-  SiTypescript,
+  SiCypress,
   SiJavascript,
-  SiHtml5,
-  SiCss3,
-  SiTailwindcss,
-  SiNodedotjs,
-  SiNestjs,
-  SiExpress,
-  SiPostgresql,
-  SiAmazondynamodb,
-  SiAwslambda,
-  SiGit,
-  SiPosthog,
-  SiSentry,
-  SiVercel,
-  SiVuedotjs,
+  SiTypescript,
   SiPython,
-  SiFastapi,
+  SiNodedotjs,
+  SiReact,
+  SiNestjs,
+  SiJira,
+  SiPostman,
+  SiGraphql,
+  SiSlack,
   SiMongodb,
+  SiPostgresql,
 } from "react-icons/si";
-import { TbBrain } from "react-icons/tb";
-import { skills } from "@/data/portfolio";
+import { usePortfolio } from "@/lib/LanguageContext";
 import type { SkillCategory } from "@/lib/types";
 import type { IconType } from "react-icons";
 
 const iconMap: Record<string, IconType> = {
-  "React.js": SiReact,
-  "Next.js": SiNextdotjs,
-  TypeScript: SiTypescript,
+  Cypress: SiCypress,
   JavaScript: SiJavascript,
-  HTML: SiHtml5,
-  CSS: SiCss3,
-  "Tailwind CSS": SiTailwindcss,
-  "React Native": SiReact,
-  "Node.js": SiNodedotjs,
-  NestJS: SiNestjs,
-  "Express.js": SiExpress,
-  "Vue.js": SiVuedotjs,
+  TypeScript: SiTypescript,
   Python: SiPython,
-  FastAPI: SiFastapi,
-  PostgreSQL: SiPostgresql,
+  "Node.js": SiNodedotjs,
+  "React.js": SiReact,
+  "React Native": SiReact,
+  NestJS: SiNestjs,
+  Jira: SiJira,
+  Postman: SiPostman,
+  GraphQL: SiGraphql,
+  Slack: SiSlack,
   MongoDB: SiMongodb,
-  "AWS Lambda": SiAwslambda,
-  DynamoDB: SiAmazondynamodb,
-  "Vercel AI SDK": SiVercel,
-  Mem0: TbBrain,
-  "LLM Integration": TbBrain,
-  Git: SiGit,
-  PostHog: SiPosthog,
-  Sentry: SiSentry,
+  PostgreSQL: SiPostgresql,
 };
 
 const categories: SkillCategory[] = [
-  "Frontend",
-  "Backend",
-  "Mobile",
-  "AI & LLMs",
-  "Cloud & DevOps",
-  "Tools & Methods",
+  "QA & Testing",
+  "Test Automation",
+  "Programming",
+  "Tools & Platforms",
+  "Methodologies",
 ];
 
 const containerVariants = {
@@ -81,6 +61,7 @@ const itemVariants = {
 };
 
 export default function Skills() {
+  const { t } = usePortfolio();
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -96,12 +77,12 @@ export default function Skills() {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-12">
-          Skills & Technologies
+          {t.ui.skillsHeading}
         </h2>
 
         <div className="space-y-10">
           {categories.map((category) => {
-            const categorySkills = skills.filter(
+            const categorySkills = t.skills.filter(
               (s) => s.category === category
             );
             if (categorySkills.length === 0) return null;
@@ -109,7 +90,7 @@ export default function Skills() {
             return (
               <div key={category}>
                 <h3 className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">
-                  {category}
+                  {t.ui.skillCategories[category]}
                 </h3>
                 <motion.div
                   variants={containerVariants}
