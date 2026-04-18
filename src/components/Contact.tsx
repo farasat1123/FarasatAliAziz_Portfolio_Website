@@ -3,6 +3,7 @@
 import SectionWrapper from "./SectionWrapper";
 import { FiMail, FiPhone, FiLinkedin, FiGithub } from "react-icons/fi";
 import type { IconType } from "react-icons";
+import { useSearchParams } from "next/navigation";
 import { usePortfolio } from "@/lib/LanguageContext";
 
 const platformIcon: Record<string, IconType> = {
@@ -12,11 +13,19 @@ const platformIcon: Record<string, IconType> = {
 
 export default function Contact() {
   const { t } = usePortfolio();
+  const searchParams = useSearchParams();
+  const submitted = searchParams.get("success") === "1";
 
   return (
     <SectionWrapper id="contact">
       <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t.ui.contactHeading}</h2>
       <p className="text-gray-400 text-lg mb-10 max-w-xl">{t.ui.contactSubtext}</p>
+
+      {submitted && (
+        <div className="mb-6 rounded-lg border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-300">
+          {t.ui.formSuccess}
+        </div>
+      )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
         <a
@@ -64,7 +73,7 @@ export default function Contact() {
       <form
         name="contact"
         method="POST"
-        action="/thank-you"
+        action="/?success=1#contact"
         data-netlify="true"
         className="bg-surface border border-surface-border rounded-xl p-6 md:p-8"
       >
