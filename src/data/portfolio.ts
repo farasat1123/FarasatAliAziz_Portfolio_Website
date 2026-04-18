@@ -8,24 +8,28 @@ const phone = "+49 17677327356";
 
 const skills: Skill[] = [
   // QA & Testing
-  { name: "Manual Testing", category: "QA & Testing" },
-  { name: "Functional Testing", category: "QA & Testing" },
   { name: "Regression Testing", category: "QA & Testing" },
+  { name: "Functional Testing", category: "QA & Testing" },
   { name: "Integration Testing", category: "QA & Testing" },
   { name: "Smoke Testing", category: "QA & Testing" },
   { name: "Sanity Testing", category: "QA & Testing" },
-  { name: "User Acceptance Testing", category: "QA & Testing" },
+  { name: "User Acceptance Testing (UAT)", category: "QA & Testing" },
   { name: "Black Box Testing", category: "QA & Testing" },
   { name: "API Testing", category: "QA & Testing" },
+  { name: "System Testing", category: "QA & Testing" },
+  { name: "Manual Testing", category: "QA & Testing" },
   { name: "Defect Management", category: "QA & Testing" },
   { name: "Software Quality Assurance", category: "QA & Testing" },
   // Test Automation
-  { name: "Cypress", category: "Test Automation" },
   { name: "Selenium WebDriver", category: "Test Automation" },
-  { name: "Playwright", category: "Test Automation" },
+  { name: "Playwright using JavaScript", category: "Test Automation" },
+  { name: "Web Automation (Cypress)", category: "Test Automation" },
   { name: "Robot Framework", category: "Test Automation" },
   { name: "Cucumber Framework", category: "Test Automation" },
   { name: "Appium", category: "Test Automation" },
+  { name: "API Automation", category: "Test Automation" },
+  { name: "Framework Creation", category: "Test Automation" },
+  { name: "Mobile Automation (Appium)", category: "Test Automation" },
   { name: "Test Automation Frameworks", category: "Test Automation" },
   // Programming
   { name: "JavaScript", category: "Programming" },
