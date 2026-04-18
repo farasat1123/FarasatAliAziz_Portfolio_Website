@@ -75,7 +75,7 @@ const education: Education[] = [
 
 const socialLinks: SocialLink[] = [
   { platform: "LinkedIn", url: "https://www.linkedin.com/in/farasataliaziz/" },
-  { platform: "GitHub", url: "https://github.com/farasat1123" },
+  { platform: "GitHub", url: "https://github.com/farasat1123?tab=overview" },
 ];
 
 // ─── English ─────────────────────────────────────────────────────────────────
@@ -88,7 +88,18 @@ export const en: PortfolioData = {
   education,
   socialLinks,
   projects: [],
-  certifications: [],
+  certifications: [
+    {
+      title: "LinkedIn Certifications",
+      issuer: "LinkedIn",
+      url: "https://www.linkedin.com/in/farasataliaziz/details/certifications/",
+    },
+    {
+      title: "LinkedIn Featured Posts",
+      issuer: "LinkedIn",
+      url: "https://www.linkedin.com/in/farasataliaziz/details/featured/",
+    },
+  ],
 
   role: "Senior QA Specialist | Agile Testing Expert",
   tagline:
@@ -245,7 +256,18 @@ export const de: PortfolioData = {
   education,
   socialLinks,
   projects: [],
-  certifications: [],
+  certifications: [
+    {
+      title: "LinkedIn Zertifikate",
+      issuer: "LinkedIn",
+      url: "https://www.linkedin.com/in/farasataliaziz/details/certifications/",
+    },
+    {
+      title: "LinkedIn Featured Posts",
+      issuer: "LinkedIn",
+      url: "https://www.linkedin.com/in/farasataliaziz/details/featured/",
+    },
+  ],
 
   role: "Senior QA-Spezialist | Agile-Testing-Experte",
   tagline:

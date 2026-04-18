@@ -36,6 +36,7 @@ export interface Project {
 export interface Certification {
   title: string;
   issuer: string;
+  url?: string;
 }
 
 export interface Education {

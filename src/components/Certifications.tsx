@@ -26,7 +26,19 @@ export default function Certifications() {
                   key={cert.title}
                   className="bg-surface border border-surface-border rounded-lg p-4"
                 >
-                  <p className="text-white font-medium text-sm">{cert.title}</p>
+                  {cert.url ? (
+                    <a
+                      href={cert.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-white font-medium text-sm hover:text-accent-light transition-colors duration-200"
+                    >
+                      {cert.title}
+                      <FiExternalLink size={12} />
+                    </a>
+                  ) : (
+                    <p className="text-white font-medium text-sm">{cert.title}</p>
+                  )}
                   <p className="text-gray-500 text-xs mt-1">{cert.issuer}</p>
                 </li>
               ))}
