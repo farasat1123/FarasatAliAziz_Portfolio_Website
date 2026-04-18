@@ -10,6 +10,12 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <main>
+      <form name="contact" data-netlify="true" hidden>
+        <input type="hidden" name="form-name" value="contact" />
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <textarea name="message" />
+      </form>
       <Navbar />
       <Hero />
       <About />

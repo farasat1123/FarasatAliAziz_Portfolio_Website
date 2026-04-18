@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import SectionWrapper from "./SectionWrapper";
-import { FiMail, FiPhone, FiLinkedin, FiGithub, FiSend, FiCheckCircle, FiAlertCircle } from "react-icons/fi";
+import { FiMail, FiPhone, FiLinkedin, FiGithub } from "react-icons/fi";
 import type { IconType } from "react-icons";
 import { usePortfolio } from "@/lib/LanguageContext";
 
@@ -11,47 +10,14 @@ const platformIcon: Record<string, IconType> = {
   GitHub: FiGithub,
 };
 
-type FormStatus = "idle" | "sending" | "success" | "error";
-
 export default function Contact() {
   const { t } = usePortfolio();
-  const [status, setStatus] = useState<FormStatus>("idle");
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setStatus("sending");
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    const body = new URLSearchParams();
-    data.forEach((value, key) => body.append(key, value as string));
-
-    try {
-      const res = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: body.toString(),
-      });
-      if (res.ok) {
-        setStatus("success");
-        form.reset();
-      } else {
-        setStatus("error");
-      }
-    } catch {
-      setStatus("error");
-    }
-  };
 
   return (
     <SectionWrapper id="contact">
-      <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-        {t.ui.contactHeading}
-      </h2>
-      <p className="text-gray-400 text-lg mb-10 max-w-xl">
-        {t.ui.contactSubtext}
-      </p>
+      <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t.ui.contactHeading}</h2>
+      <p className="text-gray-400 text-lg mb-10 max-w-xl">{t.ui.contactSubtext}</p>
 
-      {/* Contact cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
         <a
           href={`mailto:${t.email}`}
@@ -95,15 +61,13 @@ export default function Contact() {
         })}
       </div>
 
-      {/* Contact form */}
       <form
         name="contact"
         method="POST"
+        action="/thank-you"
         data-netlify="true"
-        onSubmit={handleSubmit}
         className="bg-surface border border-surface-border rounded-xl p-6 md:p-8"
       >
-        {/* Hidden input required for Netlify Forms */}
         <input type="hidden" name="form-name" value="contact" />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
@@ -146,26 +110,11 @@ export default function Contact() {
           />
         </div>
 
-        {status === "success" && (
-          <div className="flex items-center gap-2 text-sm text-green-400 mb-5">
-            <FiCheckCircle className="shrink-0" />
-            {t.ui.formSuccess}
-          </div>
-        )}
-        {status === "error" && (
-          <div className="flex items-center gap-2 text-sm text-red-400 mb-5">
-            <FiAlertCircle className="shrink-0" />
-            {t.ui.formError}
-          </div>
-        )}
-
         <button
           type="submit"
-          disabled={status === "sending" || status === "success"}
-          className="flex items-center gap-2 bg-accent hover:bg-accent-dark disabled:opacity-60 disabled:cursor-not-allowed text-white font-medium px-6 py-3 rounded-lg transition-colors duration-200"
+          className="flex items-center gap-2 bg-accent hover:bg-accent-dark text-white font-medium px-6 py-3 rounded-lg transition-colors duration-200"
         >
-          <FiSend size={15} />
-          {status === "sending" ? t.ui.formSending : t.ui.formSubmit}
+          {t.ui.formSubmit}
         </button>
       </form>
     </SectionWrapper>
