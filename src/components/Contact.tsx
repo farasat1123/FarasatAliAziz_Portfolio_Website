@@ -31,7 +31,7 @@ export default function Contact() {
     });
 
     try {
-      const endpoints = ["/__forms", "/__forms.html"];
+      const endpoints = ["/forms.html", "/__forms.html", "/__forms"];
       let delivered = false;
 
       for (const endpoint of endpoints) {
@@ -118,7 +118,7 @@ export default function Contact() {
       <form
         name="contact"
         method="POST"
-        action="/__forms"
+        action="/forms.html"
         data-netlify="true"
         onSubmit={handleSubmit}
         className="bg-surface border border-surface-border rounded-xl p-6 md:p-8"
