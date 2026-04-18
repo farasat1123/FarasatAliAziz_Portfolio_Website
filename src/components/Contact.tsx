@@ -1,9 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import SectionWrapper from "./SectionWrapper";
 import { FiMail, FiPhone, FiLinkedin, FiGithub } from "react-icons/fi";
 import type { IconType } from "react-icons";
-import { useSearchParams } from "next/navigation";
 import { usePortfolio } from "@/lib/LanguageContext";
 
 const platformIcon: Record<string, IconType> = {
@@ -13,8 +13,11 @@ const platformIcon: Record<string, IconType> = {
 
 export default function Contact() {
   const { t } = usePortfolio();
-  const searchParams = useSearchParams();
-  const submitted = searchParams.get("success") === "1";
+  const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    setSubmitted(window.location.search.includes("success=1"));
+  }, []);
 
   return (
     <SectionWrapper id="contact">
